@@ -227,3 +227,35 @@ export async function deleteDeveloper(req: Request, res: Response) {
     });
   }
 }
+
+export async function resetAndSeedDB(req: Request, res: Response) {
+  try {
+    // Reset
+    await Developer.deleteMany();
+
+    // Seed
+    const developers = await Developer.insertMany([
+      {
+        firstName: 'Test',
+        lastName: 'User 1',
+        email: 'test1@gmail.com',
+        password: 'test1234',
+      },
+      {
+        firstName: 'Test',
+        lastName: 'User 2',
+        email: 'test2@gmail.com',
+        password: 'test1234',
+      },
+    ]);
+
+    res.status(200).json({
+      data: developers,
+    });
+  } catch (e) {
+    res.status(500).json({
+      error: e,
+      message: 'An unexpected error occurred.',
+    });
+  }
+}

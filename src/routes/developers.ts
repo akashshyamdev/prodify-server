@@ -7,9 +7,9 @@ import {
   getDeveloper,
   githubLoginDeveloper,
   googleLoginDeveloper,
-  loginDeveloper,
+  loginDeveloper, resetAndSeedDB,
   updateDeveloper,
-  uploadDeveloperMedia,
+  uploadDeveloperMedia
 } from '../controllers/developers';
 
 const router = Router();
@@ -27,5 +27,9 @@ router.put('/:id', updateDeveloper);
 router.delete('/:id', deleteDeveloper);
 
 router.post('/upload', upload.single('image'), uploadDeveloperMedia);
+
+if(process.env.NODE_ENV === 'development') {
+  router.post('/seed', resetAndSeedDB);
+}
 
 export default router;
