@@ -10,6 +10,7 @@
 		"build": "tsc -p ."
 	},
 	"dependencies": {
+		"@types/mocha": "^9.0.0",
 		"@types/multer": "^1.4.5",
 		"@types/streamifier": "^0.1.0",
 		"axios": "^0.21.1",
